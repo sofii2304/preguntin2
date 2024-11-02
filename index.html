@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntin</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <video autoplay muted loop id="background-video">
+        <source src="img/fondo.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+    </video>
+    <!-- Pantalla de Inicio -->
+    <div id="start-screen" class="screen">
+        <h1>Bienvenido a Preguntin</h1>
+        <input type="text" id="player-name" placeholder="Ingresa tu nombre">
+        <button id="start-btn">Iniciar Juego</button>
+    </div>
+
+    
+
+    <!-- Pantalla de Preguntas -->
+    <div id="question-screen" class="screen hidden">
+        <h2 id="category-name"></h2>
+        <p id="question"></p>
+        <div id="answers"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+
+<body>
+
+    <h1>Bienvenido, <span id="player-name-display"></span>!</h1>
+    <p class="puntaje">Puntaje: <span id="player-score-display">0</span></p>
+    <h2 class="categora">Elige una categoría o usa la ruleta</h2>
+
+    <div id="categories">
+        <button class="category-btn" data-category="Geografia">Geografia</button>
+        <button class="category-btn" data-category="Libros">Libros</button>
+        <button class="category-btn" data-category="Matematicas">Matematicas</button>
+        <button class="category-btn" data-category="Videojuegos">Videojuegos</button>
+        <button class="category-btn" data-category="Deportes">Deportes</button>
+        <button class="category-btn" data-category="Entretenimiento">Entretenimiento</button>
+        <button class="category-btn" data-category="Ciencia">Ciencia</button>
+        <button class="category-btn" data-category="Arte y Literatura">Arte y Literatura</button>
+        <button class="category-btn" data-category="Historia">Historia</button>
+        <input type="button" value="GIRA LA RULETA" style="float:left;" id='spin' />
+    </div>
+    <div id="result"></div>
+
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <div id="category-screen" class="screen hidden">
+
+
+    </div>
+
+
+    <script src="script2.js"></script>
+</body>
+
+</html>
