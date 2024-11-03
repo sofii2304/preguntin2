@@ -4,95 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cuestionario de Historia</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        #questions-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .question-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 10px;
-            width: 300px;
-            text-align: center;
-        }
-        .question-card h2 {
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-        .answers {
-            list-style: none;
-            padding: 0;
-        }
-        .answers li {
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 5px 0;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .answers li:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="styles10.css">
+    
 </head>
 <body>
     <h1>Cuestionario de Historia</h1>
     <div id="questions-container"></div>
-    <script>
-        const apiUrl = 'https://opentdb.com/api.php?amount=50&category=23&type=multiple'; // URL de la API para Historia
-        let questions = [];
+    <div id="score">Puntaje: 0</div>
 
-        async function fetchQuestions() {
-            try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error('Error en la solicitud: ' + response.status);
-                }
-                const data = await response.json();
-                questions = data.results; // Obtener las preguntas de la respuesta
-                displayQuestions();
-            } catch (error) {
-                console.error('Hubo un problema con la solicitud:', error);
-            }
-        }
 
-        function displayQuestions() {
-            const container = document.getElementById('questions-container');
-            questions.forEach((question, index) => {
-                const questionElement = document.createElement('div');
-                questionElement.className = 'question-card';
-                questionElement.innerHTML = `
-                    <h2>Pregunta ${index + 1}</h2>
-                    <p>${question.question}</p>
-                    <ul class="answers">
-                        ${[...question.incorrect_answers, question.correct_answer]
-                            .sort(() => Math.random() - 0.5) // Mezclar respuestas
-                            .map(answer => `<li>${answer}</li>`).join('')}
-                    </ul>
-                `;
-                container.appendChild(questionElement);
-            });
-        }
-
-        fetchQuestions();
-    </script>
+    <script src="script3.js"></script>
 </body>
 </html>
