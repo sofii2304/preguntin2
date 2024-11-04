@@ -1,4 +1,4 @@
-const apiUrl = 'https://opentdb.com/api.php?amount=30&category=25'; // URL de la API para Historia
+const apiUrl = 'https://opentdb.com/api.php?amount=40&category=21'; // URL de la API para Historia
 let questions = [];
 let score = 0;
 let currentQuestionIndex = 0;
