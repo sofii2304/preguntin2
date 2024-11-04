@@ -11,19 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const answer2 = document.getElementById('answer-2').value;
         const answer3 = document.getElementById('answer-3').value;
         const correctAnswer = document.getElementById('correct-answer').value;
+        const category = document.getElementById('category').value;
 
         const question = {
             text: questionText,
             answers: [answer1, answer2, answer3],
-            correct: correctAnswer
+            correct: correctAnswer,
+            category: category
         };
 
-        // Aquí puedes almacenar la pregunta en localStorage o una base de datos
+        saveQuestionToLocalStorage(question);
         addQuestionToList(question);
         questionForm.reset();
     });
 
-    // Función para mostrar preguntas en la lista
+    function saveQuestionToLocalStorage(question) {
+        const storedQuestions = JSON.parse(localStorage.getItem('customQuestions')) || {};
+        if (!storedQuestions[question.category]) {
+            storedQuestions[question.category] = [];
+        }
+        storedQuestions[question.category].push(question);
+        localStorage.setItem('customQuestions', JSON.stringify(storedQuestions));
+    }
+
     function addQuestionToList(question) {
         const questionItem = document.createElement('div');
         questionItem.classList.add('question-item');
@@ -31,7 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <p><strong>Pregunta:</strong> ${question.text}</p>
             <p><strong>Opciones:</strong> ${question.answers.join(', ')}</p>
             <p><strong>Respuesta Correcta:</strong> ${question.correct}</p>
+            <p><strong>Categoría:</strong> ${question.category}</p>
         `;
         questionsList.appendChild(questionItem);
     }
 });
+
