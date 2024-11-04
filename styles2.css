@@ -18,6 +18,16 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    color: rgb(255, 255, 255);
+    text-shadow:
+        -1px -1px 0 #000000,
+        1px -1px 0 #000000,
+        -1px 1px 0 #000000,
+        1px 1px 0 #000000;
+    text-align: center;
+}
+
 #spin {
     background-color: #007bff;
     color: white;
