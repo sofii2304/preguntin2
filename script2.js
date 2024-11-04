@@ -203,7 +203,7 @@ function stopRotateWheel() {
           page = 'categorias/ciencia.html';
           break;
       case 'Arte y Literatura':
-          page = 'categorias/arte_y_literatura.html';
+          page = 'categorias/arteyliteratura.html';
           break;
       case 'Historia':
           page = 'categorias/historia.html';
