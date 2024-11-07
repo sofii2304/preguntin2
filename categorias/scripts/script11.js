@@ -4,6 +4,7 @@ let score = 0;
 let currentQuestionIndex = 0;
 let currentSet = []; // Conjunto actual de preguntas
 let questionsAnswered = 0; // Contador de preguntas respondidas
+let questionNumber = 1; // Número de pregunta actual para numeración
 
 async function fetchQuestions() {
     try {
