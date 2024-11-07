@@ -1,10 +1,11 @@
-const apiUrl = 'https://opentdb.com/api.php?amount=30&category=25'; // URL de la API para Historia
+const apiUrl = 'https://opentdb.com/api.php?amount=30&category=23&type=multiple'; // URL de la API para Historia (Categoría 23)
 let questions = [];
 let score = 0;
 let currentQuestionIndex = 0;
 let currentSet = []; // Conjunto actual de preguntas
 let questionsAnswered = 0; // Contador de preguntas respondidas
 
+// Función que obtiene las preguntas desde la API
 async function fetchQuestions() {
     try {
         const response = await fetch(apiUrl);
@@ -19,27 +20,29 @@ async function fetchQuestions() {
     }
 }
 
+// Función para cargar el siguiente conjunto de preguntas (4 preguntas a la vez)
 function loadNextSet() {
     if (currentQuestionIndex >= questions.length) {
         document.getElementById('questions-container').innerHTML = '<h2>No hay más preguntas disponibles.</h2>';
         return;
     }
-    currentSet = questions.slice(currentQuestionIndex, currentQuestionIndex + 4);
+    currentSet = questions.slice(currentQuestionIndex, currentQuestionIndex + 4); // Cargar 4 preguntas
     currentQuestionIndex += 4;
 
     displayQuestions();
 }
 
+// Función para mostrar las preguntas en el HTML
 function displayQuestions() {
     const container = document.getElementById('questions-container');
     container.innerHTML = ''; // Limpiar el contenedor
     container.style.opacity = 0; // Ocultar antes de mostrar
 
-    for (let question of currentSet) {
+    currentSet.forEach((question, index) => {
         const questionElement = document.createElement('div');
         questionElement.className = 'question-card';
         questionElement.innerHTML = `
-            <h2>Pregunta ${currentQuestionIndex - currentSet.length + 1}</h2>
+            <h2>Pregunta ${currentQuestionIndex - currentSet.length + index + 1}</h2>
             <p>${question.question}</p>
             <ul class="answers">
                 ${[...question.incorrect_answers, question.correct_answer]
@@ -48,10 +51,12 @@ function displayQuestions() {
             </ul>
         `;
         container.appendChild(questionElement);
-    }
+    });
+
     container.style.opacity = 1; // Mostrar preguntas
 }
 
+// Función para seleccionar una respuesta y actualizar el puntaje
 function selectAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
         score++;
@@ -69,8 +74,10 @@ function selectAnswer(selectedAnswer, correctAnswer) {
     }
 }
 
+// Función para actualizar el puntaje en la interfaz
 function updateScore() {
     document.getElementById('score').innerText = `Puntaje: ${score}`;
 }
 
+// Iniciar la carga de preguntas al cargar el script
 fetchQuestions();
