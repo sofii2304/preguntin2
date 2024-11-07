@@ -1,4 +1,4 @@
-const apiUrl = 'https://opentdb.com/api.php?amount=40&category=14'; // URL de la API para Historia
+const apiUrl = 'https://opentdb.com/api.php?amount=40&category=14&type=multiple'; // URL de la API para Mitología
 let questions = [];
 let score = 0;
 let currentQuestionIndex = 0;
@@ -26,7 +26,6 @@ function loadNextSet() {
     }
     currentSet = questions.slice(currentQuestionIndex, currentQuestionIndex + 4);
     currentQuestionIndex += 4;
-
     displayQuestions();
 }
 
@@ -35,11 +34,11 @@ function displayQuestions() {
     container.innerHTML = ''; // Limpiar el contenedor
     container.style.opacity = 0; // Ocultar antes de mostrar
 
-    for (let question of currentSet) {
+    currentSet.forEach((question, index) => {
         const questionElement = document.createElement('div');
         questionElement.className = 'question-card';
         questionElement.innerHTML = `
-            <h2>Pregunta ${currentQuestionIndex - currentSet.length + 1}</h2>
+            <h2>Pregunta ${currentQuestionIndex - currentSet.length + index + 1}</h2>
             <p>${question.question}</p>
             <ul class="answers">
                 ${[...question.incorrect_answers, question.correct_answer]
@@ -48,7 +47,7 @@ function displayQuestions() {
             </ul>
         `;
         container.appendChild(questionElement);
-    }
+    });
     container.style.opacity = 1; // Mostrar preguntas
 }
 
@@ -61,7 +60,6 @@ function selectAnswer(selectedAnswer, correctAnswer) {
 
     // Verificar si se han respondido todas las preguntas del conjunto actual
     if (questionsAnswered === 4) {
-        // Esperar un segundo antes de mostrar nuevas preguntas
         setTimeout(() => {
             questionsAnswered = 0; // Reiniciar contador de preguntas respondidas
             loadNextSet();
