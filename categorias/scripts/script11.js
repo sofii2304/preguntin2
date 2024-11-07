@@ -4,7 +4,7 @@ let score = 0;
 let currentQuestionIndex = 0;
 let currentSet = []; // Conjunto actual de preguntas
 let questionsAnswered = 0; // Contador de preguntas respondidas
-let questionNumber = 1; // Número de pregunta actual para numeración
+let questionNumber = 1; // Número de pregunta global y continuo
 
 async function fetchQuestions() {
     try {
@@ -40,7 +40,7 @@ function displayQuestions() {
         const questionElement = document.createElement('div');
         questionElement.className = 'question-card';
         questionElement.innerHTML = `
-            <h2>Pregunta ${currentQuestionIndex - currentSet.length + 1}</h2>
+            <h2>Pregunta ${questionNumber++}</h2>
             <p>${question.question}</p>
             <ul class="answers">
                 ${[...question.incorrect_answers, question.correct_answer]
